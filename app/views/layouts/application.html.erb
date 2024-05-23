@@ -6,40 +6,80 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f4ff1bb341.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "Home", user_session_path %>
-        </li>
-        <li>
-          <%= link_to "Users", book_index_path %>
-        </li>
-        <li>
-          <%= link_to "Books", new_book_path %>
-        </li>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Home", user_session_path %>
-        </li>
-        <li>
-          <%= link_to "About", root_path %>
-        </li>
-        <li>
-          <%= link_to "Sign in", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>Bookers</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/users/:id">
+                  <i class="fa-solid fa-house" style="color: #ffffff;"></i>
+                    Home
+                </a>
+              </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/users">
+                  <i class="fa-solid fa-users" style="color: #ffffff;"></i>
+                    Users
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/books">
+                  <i class="fa-regular fa-book-open" style="color: #ffffff;"></i>
+                    Books
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+                  <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                    Log out
+                </a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/">
+                  <i class="fa-solid fa-house" style="color: #ffffff;"></i>
+                    Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/home/about">
+                  <i class="fa-solid fa-link" style="color: #ffffff;"></i>
+                    About
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/users/sign_up">
+                  <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i>
+                    Sign in
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/users/sign_in">
+                  <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>
+                    Log in
+                </a>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
       <%= yield %>
