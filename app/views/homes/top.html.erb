@@ -9,17 +9,17 @@
       <div class="btn-wrapper col-10 mx-auto">
         <% if user_signed_in? %>
         <div class="row">
-          <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/:id">Log in</a>
+          <%= link_to "Log in", user_path(:id), class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
         </div>
         <div class="row">
-          <a class="btn btn-success btn-sm btn-block sign_up" href="/users/:id">Sign up</a>
+          <%= link_to "Sign up", user_path(:id), class: "btn btn-success btn-sm btn-block sign_up" %>
         </div>
         <% else %>
         <div class="row">
-          <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/sign_in">Log in</a>
+          <%= link_to "Log in", "/users/sign_in", class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
         </div>
         <div class="row">
-          <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">Sign up</a>
+          <%= link_to "Sign up", "/users/sign_up", class: "btn btn-success btn-sm btn-block sign_up" %>
         </div>
         <% end %>
       </div>

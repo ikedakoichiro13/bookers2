@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user.user_id = current_user.id
     @user.save
     redirect_to books_path
- end
+  end
 
   def update
     @user = current_user
@@ -32,6 +32,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 end
