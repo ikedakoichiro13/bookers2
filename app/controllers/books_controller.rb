@@ -6,11 +6,12 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @user = current_user
+    @book.user_id = current_user.id
     if @book.save
       redirect_to book_path(@book)
     else
-      render 'index'
+      flash.now[:alert] = @book.errors.full_messages.join(", ")
+      render 'show'
     end
   end
 

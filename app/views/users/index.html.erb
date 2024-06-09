@@ -9,9 +9,11 @@
             <th colspan="3"></th>
             <tbody>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <% @users.each do |user| %>
+                <td><%= image_tag user.profile_image, size: '100x100' %></td>
+                <td><%= user.name %></td>
+                <td><%= link_to 'Show', user_path(user) %></td>
+                <% end %>
               </tr>
             </tbody>
           </tr>
