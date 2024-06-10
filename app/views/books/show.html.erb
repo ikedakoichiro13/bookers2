@@ -1,16 +1,24 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
 <%= render 'users/list', user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
           <tr>
-            <td><%= link_to image_tag book.user.get_profile_image_method, user_path(@user) %></td>
+            <td><%= link_to user_path(@user) do %>
+                  <%= image_tag @user.get_profile_image %>
+                <% end %>
+            </td>
             <td><%= link_to @user.name, user_path(@user) %></td>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
             <td><% if @book.user_id == current_user.id %>
                   <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_id" %>
-                  <%= link_to "Destroy", books_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_id" %>
+                  <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_id" %>
                 <% end %>
             </td>
           </tr>

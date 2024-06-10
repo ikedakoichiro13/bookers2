@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @books = @user.books
   end
 
   def edit
@@ -16,14 +17,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.user_id = current_user.id
-    @user.save
-    redirect_to books_path
+    if @user.save
+       flash[:success] = "Welcome! You have signed up successfully."
+      redirect_to books_path
+    else
+      render 'new'
+    end
   end
 
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to users_path
+       flash[:success] = "You have updated user successfully."
+      redirect_to books_path
     else
       render '/users/:id/edit'
     end
