@@ -11,14 +11,14 @@
           <tr>
             <td><%= link_to user_path(@user) do %>
                   <%= image_tag @user.get_profile_image %>
-                <% end %>
+                <% end %><br>
+                <%= link_to @user.name, user_path(@user) %>
             </td>
-            <td><%= link_to @user.name, user_path(@user) %></td>
-            <td><%= @book.title %></td>
+            <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
             <td><% if @book.user_id == current_user.id %>
                   <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_id" %>
-                  <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_id" %>
+                  <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_id", data: { confirm: '本当に削除しますか？' } %>
                 <% end %>
             </td>
           </tr>
