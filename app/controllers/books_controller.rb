@@ -23,7 +23,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      flash[:success] = "更新が成功しました。"
+      flash[:success] = "You have updated book successfully."
       redirect_to book_path(@book)
     else
       flash.now[:alert] = @book.errors.full_messages.join(", ")
@@ -53,14 +53,14 @@ class BooksController < ApplicationController
 
   private
 
+  def book_params
+    params.require(:book).permit(:title, :body)
+  end
+
   def ensure_correct_user
     book = Book.find(params[:id])
     unless book.user_id == current_user.id
       redirect_to books_path
     end
-  end
-
-  def book_params
-    params.require(:book).permit(:title, :body)
   end
 end

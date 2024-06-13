@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to books_path
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")
-      render 'new'
+      render :new
     end
   end
 
@@ -37,10 +37,10 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
        flash[:success] = "You have updated user successfully."
-      redirect_to books_path
+      redirect_to user_path(@user)
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")
-      render 'edit'
+      render :edit
     end
   end
 
